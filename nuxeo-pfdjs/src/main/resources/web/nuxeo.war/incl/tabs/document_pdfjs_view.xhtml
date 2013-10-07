@@ -9,29 +9,29 @@
   <script type="text/javascript" src="#{baseURL}scripts/splitter.js"></script>
   <style type="text/css" media="all">
 #summarySplitter {
-	min-height: 500px;
-	min-width: 1000px;
+    min-height: 500px;
+    min-width: 1000px;
 }
 
 #summarySplitter div {
-	overflow: auto;
+    overflow: auto;
 }
 
 #summarySplitter div.summary {
-	overflow: auto;
+    overflow: auto;
 }
 
 .vsplitbar {
-	width: 5px;
-	background: #aaa;
+    width: 5px;
+    background: #aaa;
 }
 </style>
 
   <script>
-			jQuery().ready(function() {
-				jQuery("#summarySplitter").splitter();
-			});
-		</script>
+            jQuery().ready(function() {
+                jQuery("#summarySplitter").splitter();
+            });
+        </script>
 
   <div id="summarySplitter">
 
@@ -75,7 +75,12 @@
 
     </div>
 
-    <div>pdf viewer goes there</div>
+    <div>
+      <nxl:widgetType name="template"
+        template="/widgets/nuxeo_pdfjs_widget_template.xhtml"
+        mode="view">
+      </nxl:widgetType>
+    </div>
 
   </div>
 </div>

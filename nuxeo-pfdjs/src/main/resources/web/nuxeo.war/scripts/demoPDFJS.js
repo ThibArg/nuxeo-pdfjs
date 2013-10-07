@@ -58,10 +58,3 @@ function goNext() {
 	renderPage(pageNum);
 }
 
-//
-// Asynchronously download PDF as an ArrayBuffer
-//
-PDFJS.getDocument(url).then(function getPdfHelloWorld(_pdfDoc) {
-	pdfDoc = _pdfDoc;
-	renderPage(pageNum);
-});

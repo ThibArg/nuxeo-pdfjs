@@ -11,5 +11,13 @@
       link="testPDFJS">
       <category>DOCUMENT_UPPER_ACTION</category>
     </action>
+    
+    <action id="TAB_CONTENT_PDFJS"
+      link="/incl/tabs/document_view.xhtml" order="15"
+      label="label.document.pdfjs.view">
+      <category>VIEW_ACTION_LIST</category>
+      <!--filter-id>isPDF</filter-id-->
+    </action>
+    
   </extension>
 </component>

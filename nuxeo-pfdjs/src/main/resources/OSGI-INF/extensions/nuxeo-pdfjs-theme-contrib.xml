@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<component name="com.regionreunion.ecm.themes.contrib">
+
+  <require>org.nuxeo.theme.nuxeo.default</require>
+
+  <extension target="org.nuxeo.theme.styling.service" point="pages">
+
+    <themePage name="*">
+      <defaultFlavor>default</defaultFlavor>
+      <flavors>
+        <flavor>default</flavor>
+      </flavors>
+      <styles append="true">
+        <style>nuxeo-pdfjs</style>
+      </styles>
+    </themePage>
+
+  </extension>
+
+  <extension target="org.nuxeo.theme.services.ThemeService"
+    point="views">
+
+    <view name="nuxeo5 includes" template-engine="jsf-facelets"
+      merge="true">
+      <format-type>widget</format-type>
+      <resource>nuxeo-pdfjs.css</resource>
+      <resource>splitter.js</resource>
+    </view>
+
+  </extension>
+
+  <extension target="org.nuxeo.theme.services.ThemeService"
+    point="resources">
+    <resource name="splitter.js">
+      <path>scripts/splitter.js</path>
+    </resource>
+  </extension>
+
+  <extension target="org.nuxeo.theme.styling.service" point="styles">
+    <style name="nuxeo-pdfjs">
+      <src>themes/css/nuxeo-pdfjs.css</src>
+    </style>
+  </extension>
+
+</component>

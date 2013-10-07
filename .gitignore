@@ -5,6 +5,7 @@
 
 target
 bin
+*/pojo-bin
 .classpath
 .project
 .settings

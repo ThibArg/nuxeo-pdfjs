@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.nuxeo.pdfjs.actions">
+
+  <require>org.nuxeo.ecm.platform.actions</require>
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="testPDFS" label="testPDFS" enabled="true" order="10"
+      link="testPDFJS">
+      <category>DOCUMENT_UPPER_ACTION</category>
+    </action>
+  </extension>
+</component>

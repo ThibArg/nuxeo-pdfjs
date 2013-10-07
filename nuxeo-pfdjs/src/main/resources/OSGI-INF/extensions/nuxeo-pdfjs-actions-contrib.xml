@@ -11,13 +11,16 @@
       link="testPDFJS">
       <category>DOCUMENT_UPPER_ACTION</category>
     </action>
-    
-    <action id="TAB_CONTENT_PDFJS"
-      link="/incl/tabs/document_view.xhtml" order="15"
-      label="label.document.pdfjs.view">
+
+    <action id="TAB_CONTENT_PDFJS" link="/incl/tabs/document_pdfjs_view.xhtml"
+      order="15" label="label.document.pdfjs.view">
       <category>VIEW_ACTION_LIST</category>
-      <!--filter-id>isPDF</filter-id-->
+      <filter id="newSection">
+        <rule grant="true">
+          <type>File</type>
+        </rule>
+      </filter>
     </action>
-    
+
   </extension>
 </component>

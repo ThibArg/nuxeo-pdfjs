@@ -1,49 +1,81 @@
-<div class="summarySplitter" xmlns:h="http://java.sun.com/jsf/html"
+<div xmlns:h="http://java.sun.com/jsf/html"
   xmlns:c="http://java.sun.com/jstl/core"
   xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
   xmlns:nxu="http://nuxeo.org/nxweb/util"
   xmlns:nxd="http://nuxeo.org/nxweb/document"
   xmlns:nxl="http://nuxeo.org/nxforms/layout">
 
-  <div class="summary">
 
-    <nxu:set var="summaryLayouts"
-      value="#{nxd:typeInfo(currentDocument).getLayouts('summary', null)}"
-      cache="true">
+  <script type="text/javascript" src="#{baseURL}scripts/splitter.js"></script>
+  <style type="text/css" media="all">
+#summarySplitter {
+	min-height: 500px;
+	min-width: 1000px;
+}
 
-      <c:if test="#{not empty summaryLayouts}">
+#summarySplitter div {
+	overflow: auto;
+}
 
-        <c:if test="false">
+#summarySplitter div.summary {
+	overflow: auto;
+}
+
+.vsplitbar {
+	width: 5px;
+	background: #aaa;
+}
+</style>
+
+  <script>
+			jQuery().ready(function() {
+				jQuery("#summarySplitter").splitter();
+			});
+		</script>
+
+  <div id="summarySplitter">
+
+
+    <div class="summary">
+
+      <nxu:set var="summaryLayouts"
+        value="#{nxd:typeInfo(currentDocument).getLayouts('summary', null)}"
+        cache="true">
+
+        <c:if test="#{not empty summaryLayouts}">
+
+          <c:if test="false">
         Since 5.7: compatibility code for old layout contributions to the
         "summary" document mode
       </c:if>
 
-        <h:form id="document_view" enctype="multipart/form-data">
+          <h:form id="document_view" enctype="multipart/form-data">
+            <a4j:region id="documentViewRegion">
+              <a4j:outputPanel id="documentViewPanel" layout="block">
+                <nxl:documentLayout documentMode="summary" mode="view"
+                  value="#{currentDocument}" includeAnyMode="false" />
+              </a4j:outputPanel>
+            </a4j:region>
+          </h:form>
+
+        </c:if>
+
+        <c:if test="#{empty summaryLayouts}">
           <a4j:region id="documentViewRegion">
             <a4j:outputPanel id="documentViewPanel" layout="block">
-              <nxl:documentLayout documentMode="summary" mode="view"
-                value="#{currentDocument}" includeAnyMode="false" />
+              <nxl:documentLayout documentMode="grid_summary"
+                mode="view" value="#{currentDocument}"
+                defaultLayout="grid_summary_layout"
+                includeAnyMode="false" />
             </a4j:outputPanel>
           </a4j:region>
-        </h:form>
+        </c:if>
 
-      </c:if>
+      </nxu:set>
 
-      <c:if test="#{empty summaryLayouts}">
-        <a4j:region id="documentViewRegion">
-          <a4j:outputPanel id="documentViewPanel" layout="block">
-            <nxl:documentLayout documentMode="grid_summary" mode="view"
-              value="#{currentDocument}"
-              defaultLayout="grid_summary_layout" includeAnyMode="false" />
-          </a4j:outputPanel>
-        </a4j:region>
-      </c:if>
+    </div>
 
-    </nxu:set>
+    <div>pdf viewer goes there</div>
 
   </div>
-
-  <div>pdf viewer goes there</div>
-
-
 </div>

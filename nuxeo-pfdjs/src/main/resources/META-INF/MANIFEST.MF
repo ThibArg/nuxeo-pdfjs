@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 5.8.qualifier
+Bundle-Name: nuxeo-pfdjs
+Nuxeo-Component: OSGI-INF/extensions/nuxeo-pdfjs-nxthemes-contrib.xml
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nuxeo-pfdjs
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

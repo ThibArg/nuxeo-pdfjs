@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.pdfjs.web.themes">
+
+  <require>org.nuxeo.theme.core</require>
+  <require>org.nuxeo.theme.fragments</require>
+  <require>org.nuxeo.theme.html</require>
+  <require>org.nuxeo.theme.jsf</require>
+  <require>org.nuxeo.theme.nuxeo.default</require>
+
+
+  <!-- views -->
+  <extension target="org.nuxeo.theme.services.ThemeService"
+    point="views">
+
+    <view name="nuxeo5 includes" template-engine="jsf-facelets"
+      merge="true">
+      <format-type>widget</format-type>
+      <resource>pdf.js</resource>
+    </view>
+
+  </extension>
+
+  <!-- resources -->
+  <extension target="org.nuxeo.theme.services.ThemeService"
+    point="resources">
+
+    <resource name="pdf.js">
+      <path>scripts/pdf.js</path>
+      <require>pdf.worker.js</require>
+    </resource>
+    
+    <resource name="pdf.worker.js">
+      <path>scripts/pdf.worker.js</path>
+    </resource>
+
+  </extension>
+</component>

@@ -4,7 +4,7 @@
 // (CORS) - most servers don't support cross-origin browser requests.
 //
 var url = 'http://cdn.mozilla.net/pdfjs/tracemonkey.pdf';
-
+var _b = {};
 //
 // Disable workers to avoid yet another cross-origin issue (workers need the URL
 // of

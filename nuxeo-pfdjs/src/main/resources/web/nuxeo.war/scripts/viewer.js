@@ -22,7 +22,6 @@
 
 'use strict';
 
-var DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';
 var DEFAULT_SCALE = 'auto';
 var DEFAULT_SCALE_DELTA = 1.1;
 var UNKNOWN_SCALE = 0;
@@ -48,8 +47,6 @@ var FindStates = {
   FIND_PENDING: 3
 };
 
-PDFJS.imageResourcesPath = './images/';
-  PDFJS.workerSrc = '../build/pdf.worker.js';
 
 var mozL10n = document.mozL10n || document.webL10n;
 
@@ -2291,7 +2288,7 @@ var PDFView = {
     document.getElementById('pageNumber').max = pagesCount;
 
     PDFView.documentFingerprint = id;
-    var store = PDFView.store = new Settings(id);
+    //var store = PDFView.store = new Settings(id);
 
     this.pageRotation = 0;
 

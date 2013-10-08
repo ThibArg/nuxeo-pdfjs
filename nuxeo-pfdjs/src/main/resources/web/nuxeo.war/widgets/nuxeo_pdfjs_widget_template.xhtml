@@ -1,28 +1,46 @@
-<div xmlns="http://www.w3.org/1999/xhtml">
+<div xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:h="http://java.sun.com/jsf/html">
 
   <script type="text/javascript" src="#{baseURL}scripts/pdf.js"></script>
-  <script type="text/javascript" src="#{baseURL}scripts/demoPDFJS.js"></script>
   
+  <script>
+    <h:outputText value="var DEFAULT_URL='#{nxd:fileUrl('downloadFile', currentDocument, 'blobholder:0' ,'helloWorld')}';"/>
+    <h:outputText value="var BASE_URL='#{baseURL}';"/>
+  </script>
+  
+   <script type="text/javascript">
+PDFJS.workerSrc = '#{baseURL}scripts/pdf.worker.js';
+  
+'use strict';
+ 
+PDFJS.getDocument(DEFAULT_URL).then(function(pdf) {
+  // Using promise to fetch the page
+  pdf.getPage(1).then(function(page) {
+    var scale = 1.5;
+    var viewport = page.getViewport(scale);
 
-  <button id="prev" onclick="goPrevious()">Previous</button>
-  <button id="next" onclick="goNext()">Next</button>
-  <span>Page: <span id="page_num"></span> / <span
-    id="page_count"></span></span>
+    //
+    // Prepare canvas using PDF page dimensions
+    //
+    var canvas = document.getElementById('the-canvas');
+    var context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    //
+    // Render PDF page into canvas context
+    //
+    var renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+    page.render(renderContext);
+  });
+});
+ 
+ 
+</script>
 
   <canvas id="the-canvas" style="border: 1px solid black"></canvas>
-  <div>
-    <script>
-                    jQuery(document).ready(
-                            function() {
-                                PDFJS.getDocument(url).then(
-                                        function getPdfHelloWorld(_pdfDoc) {
-                                            pdfDoc = _pdfDoc;
-                                            renderPage(pageNum);
-                                        });
-
-                            });
-                </script>
-
-  </div>
-
+  
 </div>

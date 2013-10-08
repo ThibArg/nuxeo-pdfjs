@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<component name="com.regionreunion.ecm.themes.contrib">
+<component name="org.nuxeo.pdfjs.themes.contrib">
 
   <require>org.nuxeo.theme.nuxeo.default</require>
 

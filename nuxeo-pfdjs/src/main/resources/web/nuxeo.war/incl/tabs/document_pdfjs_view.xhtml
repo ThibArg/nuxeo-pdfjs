@@ -22,14 +22,16 @@
 }
 
 .vsplitbar {
-    width: 5px;
-    background: #aaa;
+    width: 4px;
+    background: lightgray url(#{baseURL}img/vgrabber.gif) no-repeat center;
 }
 </style>
 
   <script>
             jQuery().ready(function() {
-                jQuery("#summarySplitter").splitter();
+                jQuery("#summarySplitter").splitter({
+                sizeLeft:400,
+                });
             });
         </script>
 

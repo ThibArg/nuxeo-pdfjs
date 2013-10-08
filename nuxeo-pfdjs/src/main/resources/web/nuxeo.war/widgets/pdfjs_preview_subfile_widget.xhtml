@@ -13,8 +13,9 @@
         value="#{pdfJsPreviewActionBean.isPdfFile(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName))}">
         <c:if test="#{isPdf}">
           <nxh:commandLink target="blank"
-            action="#{pdfJsPreviewActionBean.getDocumentURL(layoutValue, 'files:files', model.rowIndex, widget.fieldDefinitions[0].propertyName, field_1)}">
-            <img src="#{contextPath}/icons/pdfjs.png" />
+            action="#{pdfJsPreviewActionBean.getDocumentURL(layoutValue, 'files:files', model.rowIndex, widget.fieldDefinitions[0].propertyName, field_1)}"
+            value="#{nxd:fileDescription(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName), nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[1].propertyName), 'pdf')}">
+            <img src=" #{contextPath}/icons/pdf_viewer.png" />
           </nxh:commandLink>
         </c:if>
       </nxu:set>

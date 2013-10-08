@@ -12,8 +12,9 @@
       value="#{pdfJsPreviewActionBean.isPdfFile(value, widget.fieldDefinitions[0].propertyName)}">
       <c:if test="#{isPdf}">
         <nxh:commandLink target="blank"
-          action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}">
-          <img src="#{contextPath}/icons/pdfjs.png" />
+          action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}"
+          value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
+          <img src="#{contextPath}/icons/pdf_viewer.png" />
         </nxh:commandLink>
       </c:if>
 
@@ -22,8 +23,9 @@
           value="#{pdfJsPreviewActionBean.getPdfRendition(value)}">
           <c:if test="#{rendition !=null}">
             <nxh:commandLink target="blank"
-              action="#{pdfJsPreviewActionBean.getDocumentPdfURL(value, rendition.name)}">
-              <img src="#{contextPath}/icons/pdfjs.png" />
+              action="#{pdfJsPreviewActionBean.getDocumentPdfURL(value, rendition.name)}"
+              value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
+              <img src=" #{contextPath}/icons/pdf_viewer.png" />
             </nxh:commandLink>
           </c:if>
         </nxu:set>

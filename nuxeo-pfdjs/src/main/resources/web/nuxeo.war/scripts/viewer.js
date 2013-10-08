@@ -47,7 +47,6 @@ var FindStates = {
   FIND_PENDING: 3
 };
 
-
 var mozL10n = document.mozL10n || document.webL10n;
 
 
@@ -398,6 +397,9 @@ var Settings = (function SettingsClosure() {
       database = JSON.parse(database);
       if (!('files' in database)) {
         database.files = [];
+      } else {
+        var temp = JSON.parse(database.files);
+        database.files = temp;
       }
       if (database.files.length >= SETTINGS_MEMORY) {
         database.files.shift();
@@ -2288,7 +2290,7 @@ var PDFView = {
     document.getElementById('pageNumber').max = pagesCount;
 
     PDFView.documentFingerprint = id;
-    //var store = PDFView.store = new Settings(id);
+    var store = PDFView.store = new Settings(id);
 
     this.pageRotation = 0;
 
@@ -2357,7 +2359,7 @@ var PDFView = {
       });
     });
 
-    /*var storePromise = store.initializedPromise;
+    var storePromise = store.initializedPromise;
     PDFJS.Promise.all([firstPagePromise, storePromise]).then(function() {
       var storedHash = null;
       if (store.get('exists', false)) {
@@ -2379,7 +2381,7 @@ var PDFView = {
       if (!self.isViewerEmbedded) {
         self.container.focus();
       }
-    });*/
+    });
 
     pagesPromise.then(function() {
       if (PDFView.supportsPrinting) {
@@ -4219,14 +4221,14 @@ function updateViewarea() {
     (PDFView.container.scrollTop - firstPage.y));
   pdfOpenParams += ',' + Math.round(topLeft[0]) + ',' + Math.round(topLeft[1]);
 
-  /*var store = PDFView.store;
+  var store = PDFView.store;
   store.initializedPromise.then(function() {
     store.set('exists', true);
     store.set('page', pageNumber);
     store.set('zoom', normalizedScaleValue);
     store.set('scrollLeft', Math.round(topLeft[0]));
     store.set('scrollTop', Math.round(topLeft[1]));
-  });*/
+  });
   var href = PDFView.getAnchorUrl(pdfOpenParams);
   document.getElementById('viewBookmark').href = href;
   document.getElementById('secondaryViewBookmark').href = href;

@@ -4,29 +4,31 @@
   xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
   xmlns:nxh="http://nuxeo.org/nxweb/html"
   xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
   xmlns:nxdir="http://nuxeo.org/nxdirectory" id="#{widget.id}">
 
   <c:if test="#{widget.mode =='view' and field_0 != null}">
-
-    <nxh:commandLink target="blank"
-      action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}">
-      <nxh:graphicImage value="#{nxd:fileIconPath(field_0)}"
-        rendered="#{! empty nxd:fileIconPath(field_0)}" />
-      <nxh:outputText value="#{field_1}" />
-    </nxh:commandLink>
-
-    <nxu:set var="hasPDFCapabilities"
-      value="#{conversionActions.isExportableToPDF(field_0)}">
-      <h:panelGroup rendered="#{hasPDFCapabilities}">
-        <h:outputText value=" || " />
+    <nxu:set var="isPdf"
+      value="#{pdfJsPreviewActionBean.isPdfFile(value, widget.fieldDefinitions[0].propertyName)}">
+      <c:if test="#{isPdf}">
         <nxh:commandLink target="blank"
-          action="#{pdfJsPreviewActionBean.getDocumentPdfURL(layoutValue.id, widget.fieldDefinitions[0].propertyName)}">
-          <h:outputText
-            value="#{messages['label.document.generatePdf']}" />
+          action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}">
+          <img src="#{contextPath}/icons/pdfjs.png" />
         </nxh:commandLink>
-      </h:panelGroup>
-    </nxu:set>
+      </c:if>
 
+      <c:if test="#{!isPdf}">
+        <nxu:set var="rendition"
+          value="#{pdfJsPreviewActionBean.getPdfRendition(value)}">
+          <c:if test="#{rendition !=null}">
+            <nxh:commandLink target="blank"
+              action="#{pdfJsPreviewActionBean.getDocumentPdfURL(value, rendition.name)}">
+              <img src="#{contextPath}/icons/pdfjs.png" />
+            </nxh:commandLink>
+          </c:if>
+        </nxu:set>
+      </c:if>
+    </nxu:set>
   </c:if>
 
 </f:subview>

@@ -18,6 +18,8 @@
 package org.nuxeo.pdfjs;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
@@ -26,15 +28,21 @@ import org.jboss.seam.annotations.Scope;
 import org.nuxeo.ecm.core.api.ClientException;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.blobholder.BlobHolder;
+import org.nuxeo.ecm.core.api.blobholder.DocumentBlobHolder;
+import org.nuxeo.ecm.platform.rendition.Rendition;
+import org.nuxeo.ecm.platform.rendition.service.RenditionService;
 import org.nuxeo.ecm.platform.ui.web.api.NavigationContext;
 import org.nuxeo.ecm.platform.ui.web.tag.fn.DocumentModelFunctions;
-import org.nuxeo.ecm.webapp.action.ConversionAction;
+import org.nuxeo.runtime.api.Framework;
 
 @Name("pdfJsPreviewActionBean")
 @Scope(ScopeType.CONVERSATION)
 public class PdfJsPreviewActionBeanBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    protected static final String PDF_MIMETYPE = "application/pdf";
 
     public static String PDFJS_PREVIEW = "testPDFJS";
 
@@ -43,9 +51,6 @@ public class PdfJsPreviewActionBeanBean implements Serializable {
 
     @In(create = true)
     protected NavigationContext navigationContext;
-
-    @In(create = true)
-    protected ConversionAction conversionActions;
 
     protected String currentDocPDFPreviewURL;
 
@@ -73,10 +78,27 @@ public class PdfJsPreviewActionBeanBean implements Serializable {
         return PDFJS_PREVIEW;
     }
 
-    public String getDocumentPdfURL(String docRef, String fileFieldFullName)
+    public String getDocumentPdfURL(DocumentModel doc, String viewId)
             throws ClientException {
-        currentDocPDFPreviewURL = conversionActions.generatePdfFile(docRef,
-                fileFieldFullName);
+        currentDocPDFPreviewURL = DocumentModelFunctions.documentUrl(
+                "rendition", doc, viewId, new HashMap<String, String>(), false);
         return PDFJS_PREVIEW;
+    }
+
+    public Rendition getPdfRendition(DocumentModel doc) throws ClientException {
+        RenditionService rs = Framework.getLocalService(RenditionService.class);
+        List<Rendition> renditions = rs.getAvailableRenditions(doc);
+        for (Rendition rendition : renditions) {
+            if ("pdf".equals(rendition.getName())) {
+                return rendition;
+            }
+        }
+        return null;
+    }
+
+    public boolean isPdfFile(DocumentModel doc, String blobPropertyName)
+            throws ClientException {
+        BlobHolder bh = new DocumentBlobHolder(doc, blobPropertyName);
+        return PDF_MIMETYPE.equals(bh.getBlob().getMimeType());
     }
 }

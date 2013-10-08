@@ -1,0 +1,23 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+  xmlns:nxh="http://nuxeo.org/nxweb/html"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
+  xmlns:nxdir="http://nuxeo.org/nxdirectory" id="#{widget.id}">
+  <nxu:set var="hasOtherBlobs"
+    value="#{layoutValue.hasSchema('files') and !empty layoutValue.files.files}">
+    <c:if test="#{hasOtherBlobs}">
+      <nxu:set var="isPdf"
+        value="#{pdfJsPreviewActionBean.isPdfFile(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName))}">
+        <c:if test="#{isPdf}">
+          <nxh:commandLink target="blank"
+            action="#{pdfJsPreviewActionBean.getDocumentURL(layoutValue, 'files:files', model.rowIndex, widget.fieldDefinitions[0].propertyName, field_1)}">
+            <img src="#{contextPath}/icons/pdfjs.png" />
+          </nxh:commandLink>
+        </c:if>
+      </nxu:set>
+    </c:if>
+  </nxu:set>
+</f:subview>

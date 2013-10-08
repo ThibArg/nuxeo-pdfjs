@@ -16,7 +16,7 @@
         <field>file:filename</field>
       </fields>
       <properties mode="any">
-        <property name="template">/widgets/pdfjs_preview_link_file_widget.xhtml
+        <property name="template">/widgets/pdfjs_preview_file_widget.xhtml
         </property>
       </properties>
       <controls mode="any">
@@ -24,18 +24,69 @@
         <control name="requireSurroundingForm">true</control>
       </controls>
     </widget>
+
+    <widget name="pdfjs_preview_files" type="template">
+      <labels>
+        <label mode="any">label.files.files</label>
+      </labels>
+      <translated>true</translated>
+      <fields>
+        <field schema="files">files</field>
+      </fields>
+      <properties mode="any">
+        <property name="template">
+          /widgets/files_list_widget_template.xhtml
+        </property>
+      </properties>
+      <properties widgetMode="edit">
+        <property name="diff">true</property>
+      </properties>
+      <subWidgets>
+        <widget name="file" type="template">
+          <labels>
+            <label mode="any"></label>
+          </labels>
+          <fields>
+            <field>file</field>
+            <field>filename</field>
+          </fields>
+          <properties mode="any">
+            <property name="template">
+              /widgets/pdfjs_preview_subfile_widget.xhtml
+            </property>
+          </properties>
+          <properties widgetMode="edit">
+            <property name="required">true</property>
+          </properties>
+        </widget>
+      </subWidgets>
+      <controls mode="any">
+        <control name="handleLabels">true</control>
+        <control name="requireSurroundingForm">true</control>
+      </controls>
+    </widget>
+
   </extension>
 
   <extension target="org.nuxeo.ecm.platform.actions.ActionService"
     point="actions">
 
-    <action id="summary_current_document_files_pdfjs_preview"
+    <action id="summary_current_document_file_pdfjs_preview"
       type="widget" order="220">
       <category>SUMMARY_PANEL_LEFT</category>
       <properties>
         <property name="widgetName">pdfjs_preview_file</property>
       </properties>
     </action>
+
+    <action id="summary_current_document_files_pdfjs_preview"
+      type="widget" order="230">
+      <category>SUMMARY_PANEL_LEFT</category>
+      <properties>
+        <property name="widgetName">pdfjs_preview_files</property>
+      </properties>
+    </action>
+
 
   </extension>
 </component>

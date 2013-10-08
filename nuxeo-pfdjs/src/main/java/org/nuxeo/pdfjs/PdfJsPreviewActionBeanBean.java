@@ -21,6 +21,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
@@ -41,6 +44,8 @@ import org.nuxeo.runtime.api.Framework;
 public class PdfJsPreviewActionBeanBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    private static Log log = LogFactory.getLog(PdfJsPreviewActionBeanBean.class);
 
     protected static final String PDF_MIMETYPE = "application/pdf";
 
@@ -98,7 +103,16 @@ public class PdfJsPreviewActionBeanBean implements Serializable {
 
     public boolean isPdfFile(DocumentModel doc, String blobPropertyName)
             throws ClientException {
+        if (doc == null || StringUtils.isEmpty(blobPropertyName)) {
+            return false;
+        }
         BlobHolder bh = new DocumentBlobHolder(doc, blobPropertyName);
-        return PDF_MIMETYPE.equals(bh.getBlob().getMimeType());
+        try {
+            return PDF_MIMETYPE.equals(bh.getBlob().getMimeType());
+        } catch (ClientException e) {
+            log.error("Can not test mime type for blob " + doc.getTitle(), e);
+            return false;
+        }
     }
+
 }

@@ -3,18 +3,15 @@
 // security restrictions, we have to use a file server with special headers
 // (CORS) - most servers don't support cross-origin browser requests.
 //
-var url = 'http://cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 var _b = {};
 //
 // Disable workers to avoid yet another cross-origin issue (workers need the URL
 // of
 // the script to be loaded, and currently do not allow cross-origin scripts)
 //
-PDFJS.disableWorker = true;
 var pdfDoc = null, pageNum = 1, scale = 1;
 //
-// Get page info from document, resize canvas accordingly, and render page
-//
+PDFJS.disableWorker=true
 function renderPage(num) {
 	var canvas = document.getElementById('the-canvas'), ctx = canvas
 			.getContext('2d');

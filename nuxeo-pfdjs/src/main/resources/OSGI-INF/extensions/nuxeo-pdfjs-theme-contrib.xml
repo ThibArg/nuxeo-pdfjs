@@ -17,7 +17,7 @@
     </themePage>
 
   </extension>
-
+<!-- 
   <extension target="org.nuxeo.theme.services.ThemeService"
     point="views">
 
@@ -42,5 +42,6 @@
       <src>themes/css/nuxeo-pdfjs.css</src>
     </style>
   </extension>
-
+ -->
+ 
 </component>

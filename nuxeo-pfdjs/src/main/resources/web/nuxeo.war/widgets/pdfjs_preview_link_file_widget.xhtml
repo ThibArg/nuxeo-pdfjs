@@ -1,0 +1,32 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+  xmlns:nxh="http://nuxeo.org/nxweb/html"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:nxdir="http://nuxeo.org/nxdirectory" id="#{widget.id}">
+
+  <c:if test="#{widget.mode =='view' and field_0 != null}">
+
+    <nxh:commandLink target="blank"
+      action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}">
+      <nxh:graphicImage value="#{nxd:fileIconPath(field_0)}"
+        rendered="#{! empty nxd:fileIconPath(field_0)}" />
+      <nxh:outputText value="#{field_1}" />
+    </nxh:commandLink>
+
+    <nxu:set var="hasPDFCapabilities"
+      value="#{conversionActions.isExportableToPDF(field_0)}">
+      <h:panelGroup rendered="#{hasPDFCapabilities}">
+        <h:outputText value=" || " />
+        <nxh:commandLink target="blank"
+          action="#{pdfJsPreviewActionBean.getDocumentPdfURL(layoutValue.id, widget.fieldDefinitions[0].propertyName)}">
+          <h:outputText
+            value="#{messages['label.document.generatePdf']}" />
+        </nxh:commandLink>
+      </h:panelGroup>
+    </nxu:set>
+
+  </c:if>
+
+</f:subview>

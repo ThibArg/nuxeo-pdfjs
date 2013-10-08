@@ -18,11 +18,12 @@
 
 <script type="text/javascript" src="#{baseURL}scripts/debugger.js"></script>
 <script>
-           PDFJS.imageResourcesPath = '#{baseURL}images/';
+         PDFJS.imageResourcesPath = '#{baseURL}images/';
          PDFJS.workerSrc = '#{baseURL}scripts/pdf.worker.js';
     </script>
 <script>
-  <h:outputText value="var DEFAULT_URL='#{nxd:fileUrl('downloadFile', currentDocument, 'blobholder:0' ,'helloWorld')}';"/>
+  <h:outputText value="var DEFAULT_URL='#{pdfJsPreviewActionBean.getCurrentDocPDFPreviewURL()}';"/>
+  console.log('dd' + DEFAULT_URL);
   </script>
 <script type="text/javascript" src="#{baseURL}scripts/viewer.js"></script>
 

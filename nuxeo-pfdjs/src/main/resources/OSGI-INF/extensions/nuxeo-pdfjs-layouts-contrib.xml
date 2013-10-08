@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.pdfjs.layouts">
+  <require>org.nuxeo.ecm.platform.forms.layouts.webapp.summary</require>
+
+  <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+    point="widgets">
+
+    <widget name="pdfjs_preview_file" type="template">
+      <labels>
+        <label mode="any">label.file.content</label>
+      </labels>
+      <translated>true</translated>
+      <fields>
+        <field>file:content</field>
+        <field>file:filename</field>
+      </fields>
+      <properties mode="any">
+        <property name="template">/widgets/pdfjs_preview_link_file_widget.xhtml
+        </property>
+      </properties>
+      <controls mode="any">
+        <control name="handleLabels">true</control>
+        <control name="requireSurroundingForm">true</control>
+      </controls>
+    </widget>
+  </extension>
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="summary_current_document_files_pdfjs_preview"
+      type="widget" order="220">
+      <category>SUMMARY_PANEL_LEFT</category>
+      <properties>
+        <property name="widgetName">pdfjs_preview_file</property>
+      </properties>
+    </action>
+
+  </extension>
+</component>

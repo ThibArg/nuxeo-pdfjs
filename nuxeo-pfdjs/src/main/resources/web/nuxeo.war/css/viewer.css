@@ -463,6 +463,14 @@ html[dir='ltr'] .doorHangerRight:before {
   background-color: rgb(255, 137, 153);
 }
 
+#toolbarViewerLeft {
+  min-width: 350px;
+}
+
+#toolbarViewerRight {
+ min-width: 200px;
+}
+
 html[dir='ltr'] #toolbarViewerLeft {
   margin-left: -1px;
 }
@@ -1664,4 +1672,3 @@ canvas {
     display: none;
   }
 }
-

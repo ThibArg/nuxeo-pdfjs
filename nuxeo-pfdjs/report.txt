@@ -1,0 +1,30 @@
+##############################
+# Migration report for JSF 2 #
+##############################
+
+Summary
+#######
+Number of files analyzed : 5
+ * [ERROR] Namespaces needing replacement : 4 occurrence(s) have been found.
+
+Details
+#######
+document_pdfjs_view.xhtml
+-----------------------
+[ERROR] The namespace changed for a4j, it must be replaced by xmlns:a4j="http://richfaces.org/a4j".
+
+test-pdfjs.xhtml
+-----------------------
+Nothing to do for the migration to JSF2.
+
+nuxeo_pdfjs_widget_template.xhtml
+-----------------------
+[ERROR] The namespace changed for a4j, it must be replaced by xmlns:a4j="http://richfaces.org/a4j".
+
+pdfjs_preview_file_widget.xhtml
+-----------------------
+[ERROR] The namespace changed for a4j, it must be replaced by xmlns:a4j="http://richfaces.org/a4j".
+
+pdfjs_preview_subfile_widget.xhtml
+-----------------------
+[ERROR] The namespace changed for a4j, it must be replaced by xmlns:a4j="http://richfaces.org/a4j".

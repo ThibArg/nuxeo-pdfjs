@@ -1,21 +1,12 @@
-<f:subview xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:c="http://java.sun.com/jstl/core"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-  xmlns:nxh="http://nuxeo.org/nxweb/html"
-  xmlns:nxu="http://nuxeo.org/nxweb/util"
-  xmlns:nxd="http://nuxeo.org/nxweb/document"
-  xmlns:nxdir="http://nuxeo.org/nxdirectory" id="#{widget.id}">
-  <nxu:set var="hasOtherBlobs"
-    value="#{layoutValue.hasSchema('files') and !empty layoutValue.files.files}">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<f:subview xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:nxh="http://nuxeo.org/nxweb/html" xmlns:nxu="http://nuxeo.org/nxweb/util" xmlns:nxd="http://nuxeo.org/nxweb/document" xmlns:nxdir="http://nuxeo.org/nxdirectory" xmlns:a4j="http://richfaces.org/a4j" id="#{widget.id}">
+  <nxu:set var="hasOtherBlobs" value="#{layoutValue.hasSchema('files') and !empty layoutValue.files.files}">
     <c:if test="#{hasOtherBlobs}">
-      <nxu:set var="isPdf"
-        value="#{pdfJsPreviewActionBean.isPdfFile(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName))}">
+      <nxu:set var="isPdf" value="#{pdfJsPreviewActionBean.isPdfFile(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName))}">
         <c:if test="#{isPdf}">
-          <nxh:commandLink target="blank"
-            action="#{pdfJsPreviewActionBean.getDocumentURL(layoutValue, 'files:files', model.rowIndex, widget.fieldDefinitions[0].propertyName, field_1)}"
-            value="#{nxd:fileDescription(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName), nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[1].propertyName), 'pdf')}">
-            <img src=" #{contextPath}/icons/pdf_viewer.png" />
+          <nxh:commandLink target="blank" action="#{pdfJsPreviewActionBean.getDocumentURL(layoutValue, 'files:files', model.rowIndex, widget.fieldDefinitions[0].propertyName, field_1)}" value="#{nxd:fileDescription(layoutValue, nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[0].propertyName), nxd:propertyPath('files', model.rowIndex, widget.fieldDefinitions[1].propertyName), 'pdf')}">
+            <img src=" #{contextPath}/icons/pdf_viewer.png"/>
           </nxh:commandLink>
         </c:if>
       </nxu:set>

@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-Vendor: Nuxeo
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 5.8.qualifier
+Bundle-Version: 7.2.qualifier
 Bundle-Name: nuxeo-pfdjs
 Bundle-ManifestVersion: 2
 Nuxeo-Component: OSGI-INF/extensions/nuxeo-pdfjs-actions-contrib.xml,O
  SGI-INF/extensions/nuxeo-pdfjs-theme-contrib.xml,OSGI-INF/extensions/
  nuxeo-pdfjs-layouts-contrib.xml
 Bundle-SymbolicName: nuxeo-pfdjs
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

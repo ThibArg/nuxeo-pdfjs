@@ -1,36 +1,22 @@
-<f:subview xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:c="http://java.sun.com/jstl/core"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
-  xmlns:nxh="http://nuxeo.org/nxweb/html"
-  xmlns:nxu="http://nuxeo.org/nxweb/util"
-  xmlns:nxd="http://nuxeo.org/nxweb/document"
-  xmlns:nxdir="http://nuxeo.org/nxdirectory" id="#{widget.id}">
+<?xml version="1.0" encoding="UTF-8"?>
 
+<f:subview xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:nxh="http://nuxeo.org/nxweb/html" xmlns:nxu="http://nuxeo.org/nxweb/util" xmlns:nxd="http://nuxeo.org/nxweb/document" xmlns:nxdir="http://nuxeo.org/nxdirectory" xmlns:a4j="http://richfaces.org/a4j" id="#{widget.id}">
   <c:if test="#{widget.mode =='view' and field_0 != null}">
-    <nxu:set var="isPdf"
-      value="#{pdfJsPreviewActionBean.isPdfFile(value, widget.fieldDefinitions[0].propertyName)}">
+    <nxu:set var="isPdf" value="#{pdfJsPreviewActionBean.isPdfFile(value, widget.fieldDefinitions[0].propertyName)}">
       <c:if test="#{isPdf}">
-        <nxh:commandLink target="blank"
-          action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}"
-          value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
-          <img src="#{contextPath}/icons/pdf_viewer.png" />
+        <nxh:commandLink target="blank" action="#{pdfJsPreviewActionBean.getDocumentURL(value, widget.fieldDefinitions[0].propertyName, field_1)}" value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
+          <img src="#{contextPath}/icons/pdf_viewer.png"/>
         </nxh:commandLink>
       </c:if>
-
       <c:if test="#{!isPdf}">
-        <nxu:set var="rendition"
-          value="#{pdfJsPreviewActionBean.getPdfRendition(value)}">
+        <nxu:set var="rendition" value="#{pdfJsPreviewActionBean.getPdfRendition(value)}">
           <c:if test="#{rendition !=null}">
-            <nxh:commandLink target="blank"
-              action="#{pdfJsPreviewActionBean.getDocumentPdfURL(value, rendition.name)}"
-              value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
-              <img src=" #{contextPath}/icons/pdf_viewer.png" />
+            <nxh:commandLink target="blank" action="#{pdfJsPreviewActionBean.getDocumentPdfURL(value, rendition.name)}" value="#{nxd:fileDescription(value, widget.fieldDefinitions[0].propertyName, widget.fieldDefinitions[1].propertyName, 'pdf')}">
+              <img src=" #{contextPath}/icons/pdf_viewer.png"/>
             </nxh:commandLink>
           </c:if>
         </nxu:set>
       </c:if>
     </nxu:set>
   </c:if>
-
 </f:subview>
